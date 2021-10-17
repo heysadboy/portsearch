@@ -1,0 +1,37 @@
+.port-container {
+    display: inline-flex;
+    margin: 30px 0px 20px 0px;
+    z-index: 1;
+}
+
+.data-info-container {
+    margin: 30px 0px 20px 0px;
+    z-index: 2;
+}
+
+.date-range-icon {
+    padding: 0px 0px 0px 10px;
+    color: #2196f3;
+}
+
+.exchange.icon {
+    color: rgba(0, 0, 0, .25);
+    padding: 7px 20px 0px 20px;
+}
+
+.select-input {
+    border-bottom: 1px solid rgba(0, 0, 0, .25);
+    padding: 5px;
+    width: 250px;
+}
+
+.search-list {
+    background-color: rgba(0, 0, 0, .03);
+    margin-top: 0px !important;
+    width: 250px;
+    
+}
+
+.search-option {
+    border-radius: 0px !important;
+}

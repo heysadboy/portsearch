@@ -1,12 +1,11 @@
 .port-container {
     display: inline-flex;
     margin: 30px 0px 20px 0px;
-    z-index: 1;
 }
 
 .data-info-container {
     margin: 30px 0px 20px 0px;
-    z-index: 2;
+    
 }
 
 .date-range-icon {
@@ -26,10 +25,11 @@
 }
 
 .search-list {
-    background-color: rgba(0, 0, 0, .03);
+    background-color: rgb(245, 245, 245);
     margin-top: 0px !important;
     width: 250px;
-    
+    z-index: 2;
+    position: absolute;
 }
 
 .search-option {

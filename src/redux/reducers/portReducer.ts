@@ -1,4 +1,4 @@
-import { IPortAction, EPortActionType} from "../types";
+import { IPortAction, EPortActionType} from "../../types";
 
 const portReducer = (state = [], action: IPortAction) => {
     switch(action.type) {

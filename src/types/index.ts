@@ -1,4 +1,4 @@
-import combineReducers from '../reducers';
+import combineReducers from '../redux/reducers';
 
 export interface IPort {
     code: string,
@@ -10,6 +10,21 @@ export interface IMarketRate {
     mean: number | null,
     low: number | null,
     high: number | null
+}
+
+export interface IPointData {
+    day: string,
+    value: number | null
+}
+
+export interface ILineData {
+    name: string,
+    color: string,
+    values: IPointData[]
+}
+
+export interface IGraphData {
+    [key: string]: ILineData
 }
 
 export interface IPortAction {

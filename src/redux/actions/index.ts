@@ -1,6 +1,6 @@
 import { ThunkDispatch } from "redux-thunk";
-import api from "../api";
-import { AppState, IMarketRateAction, EPortActionType, IPort, IPortAction, IMarketRate, EMarketRateActionType } from "../types";
+import api from "../../api";
+import { AppState, IMarketRateAction, EPortActionType, IPort, IPortAction, IMarketRate, EMarketRateActionType } from "../../types";
 
 export const getPortsData = () => async (dispatch: ThunkDispatch<AppState, {}, IPortAction>) => {
     const response = await api.get("/ports");

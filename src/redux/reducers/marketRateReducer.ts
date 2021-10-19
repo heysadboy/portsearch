@@ -1,4 +1,4 @@
-import { EMarketRateActionType, IMarketRateAction } from "../types";
+import { EMarketRateActionType, IMarketRateAction } from "../../types";
 
 const marketRateReducer = (state = [], action: IMarketRateAction) => {
     switch (action.type) {

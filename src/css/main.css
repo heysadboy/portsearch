@@ -5,12 +5,32 @@
 
 .data-info-container {
     margin: 30px 0px 20px 0px;
-    
 }
 
 .date-range-icon {
-    padding: 0px 0px 0px 10px;
+    padding: 0px 20px 0px 10px;
     color: #2196f3;
+}
+
+.market-position-title {
+    font-weight: bold;
+    margin: 0px 0px 10px 0px;
+}
+
+.market-checkbox {
+    margin: 5px 0px 5px 0px;
+}
+
+.multi-line-chart-container, .market-position-container {
+    box-shadow: none !important;
+}
+
+.data-point-container {
+    display: flex !important;
+}
+
+.date-container {
+    box-shadow: none !important;
 }
 
 .exchange.icon {

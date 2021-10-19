@@ -7,7 +7,7 @@ interface IDateRange {
 
 const DateRange: FC<IDateRange> = ({ startDate, endDate }) => {
     return (
-        <div className="ui basic label ">
+        <div className="ui compact segment date-container">
             <i className="calendar outline icon"></i>
             <span>{startDate}</span>
             <i className="date-range-icon right arrow icon"></i>

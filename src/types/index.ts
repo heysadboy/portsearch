@@ -13,7 +13,7 @@ export interface IMarketRate {
 }
 
 export interface IPointData {
-    day: string,
+    day: Date | null,
     value: number | null
 }
 
@@ -24,25 +24,26 @@ export interface ILineData {
 }
 
 export interface IGraphData {
-    [key: string]: ILineData
+    [key: string]: ILineData,
 }
 
-export interface IPortAction {
-    type: EPortActionType
-    payload: IPort[]
+export enum EActionType {
+    get_ports = "GET_PORTS",
+    get_market_rates = "GET_MARKET_RATES",
+    set_status = "SET_STATUS"
 }
 
-export interface IMarketRateAction {
-    type: EMarketRateActionType
-    payload: IMarketRate[]
+export enum EStatusType {
+    ok = "OK",
+    error = "ERROR",
+    initial = "INITIAL",
+    loading = "LOADING",
+    no_position_selected = "NO_POSITION_SELECTED"
 }
 
-export enum EPortActionType {
-    get_ports = "GET_PORTS"
-}
-
-export enum EMarketRateActionType {
-    get_ports = "GET_MARKET_RATES"
+export interface IAction {
+    type: EActionType
+    payload: IPort[] | IMarketRate[] | EStatusType
 }
 
 export type AppState = ReturnType<typeof combineReducers>;

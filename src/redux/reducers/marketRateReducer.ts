@@ -1,8 +1,8 @@
-import { EMarketRateActionType, IMarketRateAction } from "../../types";
+import { EActionType, IAction } from "../../types";
 
-const marketRateReducer = (state = [], action: IMarketRateAction) => {
+const marketRateReducer = (state = [], action: IAction) => {
     switch (action.type) {
-        case EMarketRateActionType.get_ports:
+        case EActionType.get_market_rates:
             return action.payload;
         default:
             return state

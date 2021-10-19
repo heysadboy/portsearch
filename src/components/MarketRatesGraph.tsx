@@ -1,13 +1,15 @@
-import React, { FC, useEffect, useState } from "react";
-import { IGraphData, ILineData, IMarketRate, IPointData } from "../types";
+import { FC, useEffect, useState } from "react";
+import { EStatusType, IGraphData, ILineData, IMarketRate, IPointData } from "../types";
 import * as d3 from "d3";
 import DateRange from "./DateRange";
 import MarketPosition from "./MarketPosition";
 import MultiLineChart from "./MultiLineChart";
 import DataPointLabel from "./DataPointsLabel";
+import { connect } from "react-redux";
+import Status from "./Status";
 
 interface IMarketRatesGraphProps {
-  data: IMarketRate[]
+  data: IMarketRate[],
 }
 
 const MarketRatesGraph: FC<IMarketRatesGraphProps> = ({ data }) => {
@@ -17,23 +19,23 @@ const MarketRatesGraph: FC<IMarketRatesGraphProps> = ({ data }) => {
   const [multiLineData, setMultiLineData] = useState<ILineData[]>([]);
 
   useEffect(() => {
-    const marketLow: ILineData = { name: "low", color: "blue", values: [] };
-    const marketAvg: ILineData = { name: "average", color: "red", values: [] }
-    const marketHigh: ILineData = { name: "high", color: "green", values: [] };
+    const marketLow: ILineData = { name: "low", color: "#D50000", values: [] };
+    const marketAvg: ILineData = { name: "average", color: "#AA00FF", values: [] }
+    const marketHigh: ILineData = { name: "high", color: "#2962FF", values: [] };
 
     data.forEach((item) => {
       const lowObj: IPointData = {
-        day: item.day,
+        day: d3.timeParse("%Y-%m-%d")(item.day),
         value: item.low
       }
 
       const avgObj: IPointData = {
-        day: item.day,
+        day: d3.timeParse("%Y-%m-%d")(item.day),
         value: item.mean
       }
 
       const highObj: IPointData = {
-        day: item.day,
+        day: d3.timeParse("%Y-%m-%d")(item.day),
         value: item.high
       }
 
@@ -46,6 +48,8 @@ const MarketRatesGraph: FC<IMarketRatesGraphProps> = ({ data }) => {
   }, [data]);
 
   useEffect(() => {
+
+
     const tempData: ILineData[] = [];
     selectedPositions.forEach((position) => {
       tempData.push(graphData[position])
@@ -54,19 +58,21 @@ const MarketRatesGraph: FC<IMarketRatesGraphProps> = ({ data }) => {
     setMultiLineData(tempData);
   }, [graphData, selectedPositions]);
 
-  const xMinValue: any = d3.min(data, d => d.day);
-  const xMaxValue: any = d3.max(data, d => d.day);
+  const domain = {
+    xMinValue: d3.min(data, d => d.day),
+    xMaxValue: d3.max(data, d => d.day),
+    yMinValue: d3.min(data, d => d.low),
+    yMaxValue: d3.max(data, d => d.high)
+  }
 
   return (
     <div id="graph-container">
-      <DateRange startDate={xMinValue} endDate={xMaxValue} />
-      <div className="ui grid">
-        <div className="twelve wide column">
-          <div className="ui segment multi-line-chart-container">
-            <MultiLineChart data={multiLineData} />
-          </div>
+      <DateRange startDate={domain.xMinValue} endDate={domain.xMaxValue} />
+      <div className="ui stackable two column grid">
+        <div className="sixteen wide tablet thirteen wide computer column">
+          {selectedPositions.length > 0 ? <MultiLineChart data={multiLineData} domain={domain} /> : <Status status={EStatusType.no_position_selected} />}
         </div>
-        <div className="four wide column">
+        <div className="sixteen wide tablet three wide computer column">
           <DataPointLabel info={`${data.length} Data Points`} />
           <div className="ui segment market-position-container">
             <MarketPosition setSelectedPositions={setSelectedPositions} selectedPositions={selectedPositions} />

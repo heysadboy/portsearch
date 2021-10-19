@@ -1,8 +1,8 @@
-import { IPortAction, EPortActionType} from "../../types";
+import { IAction, EActionType} from "../../types";
 
-const portReducer = (state = [], action: IPortAction) => {
+const portReducer = (state = [], action: IAction) => {
     switch(action.type) {
-        case EPortActionType.get_ports:
+        case EActionType.get_ports:
             return action.payload;
         default:
             return state;

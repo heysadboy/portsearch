@@ -51,7 +51,7 @@ const MarketRatesGraph: FC<IMarketRatesGraphProps> = ({ data }) => {
 
   useEffect(() => {
     const tempData: ILineData[] = [];
-    //This is changed everytime market position is selected fro the MarketPosition array
+    //This is changed everytime market position is selected from the MarketPosition array
     selectedPositions.forEach((position) => {
       tempData.push(graphData[position])
     });

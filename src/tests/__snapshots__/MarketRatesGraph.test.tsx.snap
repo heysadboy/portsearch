@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MarketRatesGraph Component Testing. 1`] = `
+<div
+  id="graph-container"
+>
+  <div
+    className="ui basic label date-container"
+  >
+    <i
+      className="calendar outline icon"
+    />
+    <span>
+      2021-01-01
+    </span>
+    <i
+      className="date-range-icon right arrow icon"
+    />
+    <span>
+      2021-01-03
+    </span>
+  </div>
+  <div
+    className="ui stackable two column grid"
+  >
+    <div
+      className="sixteen wide tablet thirteen wide computer column"
+    >
+      <div
+        id="chart"
+      />
+    </div>
+    <div
+      className="four wide tablet three wide computer column"
+    >
+      <div
+        className="ui orange label data-point-container"
+      >
+        3 Data Points
+      </div>
+      <div
+        className="ui segment market-position-container"
+      >
+        <div
+          className="grouped fields"
+        >
+          <div
+            className="market-position-title"
+          >
+            Market Position
+          </div>
+          <div
+            className="field"
+          >
+            <div
+              className="ui checkbox market-checkbox"
+            >
+              <input
+                name="high"
+                onChange={[Function]}
+                type="checkbox"
+              />
+              <label>
+                High
+              </label>
+            </div>
+          </div>
+          <div
+            className="field"
+          >
+            <div
+              className="ui checkbox market-checkbox"
+            >
+              <input
+                defaultChecked={true}
+                name="average"
+                onChange={[Function]}
+                type="checkbox"
+              />
+              <label>
+                Average
+              </label>
+            </div>
+          </div>
+          <div
+            className="field"
+          >
+            <div
+              className="ui checkbox market-checkbox"
+            >
+              <input
+                name="low"
+                onChange={[Function]}
+                type="checkbox"
+              />
+              <label>
+                Low
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

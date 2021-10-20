@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataRange Component Testing. 1`] = `
+<div
+  className="ui error message"
+>
+  <div
+    className="header"
+  >
+    Sorry, please try another route
+  </div>
+  <p>
+    Please select another route. We are unable to get market rates for this route.
+  </p>
+</div>
+`;

@@ -31,16 +31,20 @@ const App: FC<IAppProps> = ({ getPortsData, getMarketRatesData, ports, marketRat
     const [origin, setOrigin] = useState("");
     const [destination, setDestination] = useState("");
 
+    //Getting ports data to provide for search suggestions
     useEffect(() => {
         getPortsData();
     }, [getPortsData]);
 
+    //Getting market rates if both origin and destination has been selected
     useEffect(() => {
         if (origin && destination) {
             getMarketRatesData(origin, destination);
         }
     }, [origin, destination, getMarketRatesData]);
 
+    //Showing initial state at first and loading when the data is being fetched.
+    //After hitting the endpoint show graph or message based on the result.
     return (
         <div className="ui container">
             <div className="port-container">

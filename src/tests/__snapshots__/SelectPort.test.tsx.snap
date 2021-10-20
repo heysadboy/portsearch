@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectPort Component Testing. 1`] = `
+<div>
+  <div
+    className="ui icon transparent input select-input"
+  >
+    <input
+      onChange={[Function]}
+      placeholder="test_placeholder"
+      type="text"
+      value=""
+    />
+    <i
+      className="globe icon"
+    />
+  </div>
+  
+</div>
+`;

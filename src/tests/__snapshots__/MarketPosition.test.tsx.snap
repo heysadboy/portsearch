@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MarketPosition Component Testing. 1`] = `
+<div
+  className="grouped fields"
+>
+  <div
+    className="market-position-title"
+  >
+    Market Position
+  </div>
+  <div
+    className="field"
+  >
+    <div
+      className="ui checkbox market-checkbox"
+    >
+      <input
+        name="high"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <label>
+        High
+      </label>
+    </div>
+  </div>
+  <div
+    className="field"
+  >
+    <div
+      className="ui checkbox market-checkbox"
+    >
+      <input
+        defaultChecked={true}
+        name="average"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <label>
+        Average
+      </label>
+    </div>
+  </div>
+  <div
+    className="field"
+  >
+    <div
+      className="ui checkbox market-checkbox"
+    >
+      <input
+        name="low"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <label>
+        Low
+      </label>
+    </div>
+  </div>
+</div>
+`;

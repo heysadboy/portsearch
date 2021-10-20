@@ -75,7 +75,7 @@ const MarketRatesGraph: FC<IMarketRatesGraphProps> = ({ data }) => {
         <div className="sixteen wide tablet thirteen wide computer column">
           {selectedPositions.length > 0 ? <MultiLineChart data={multiLineData} domain={domain} /> : <Status status={EStatusType.no_position_selected} />}
         </div>
-        <div className="sixteen wide tablet three wide computer column">
+        <div className="four wide tablet three wide computer column">
           <DataPointLabel info={`${data.length} Data Points`} />
           <div className="ui segment market-position-container">
             <MarketPosition setSelectedPositions={setSelectedPositions} selectedPositions={selectedPositions} />

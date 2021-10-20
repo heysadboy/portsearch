@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataPointsLabel Component Testing. 1`] = `
+<div
+  className="ui orange label data-point-container"
+>
+  10 Data Points
+</div>
+`;

@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataRange Component Testing. 1`] = `
+<div
+  className="ui basic label date-container"
+>
+  <i
+    className="calendar outline icon"
+  />
+  <span>
+    2021-01-01
+  </span>
+  <i
+    className="date-range-icon right arrow icon"
+  />
+  <span>
+    2021-01-31
+  </span>
+</div>
+`;

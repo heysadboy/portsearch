@@ -33,13 +33,13 @@ const App: FC<IAppProps> = ({ getPortsData, getMarketRatesData, ports, marketRat
 
     useEffect(() => {
         getPortsData();
-    }, []);
+    }, [getPortsData]);
 
     useEffect(() => {
         if (origin && destination) {
             getMarketRatesData(origin, destination);
         }
-    }, [origin, destination]);
+    }, [origin, destination, getMarketRatesData]);
 
     return (
         <div className="ui container">

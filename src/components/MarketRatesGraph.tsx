@@ -5,25 +5,27 @@ import DateRange from "./DateRange";
 import MarketPosition from "./MarketPosition";
 import MultiLineChart from "./MultiLineChart";
 import DataPointLabel from "./DataPointsLabel";
-import { connect } from "react-redux";
 import Status from "./Status";
 
 interface IMarketRatesGraphProps {
   data: IMarketRate[],
 }
 
+//Graph Data component to display information related to the graph
 const MarketRatesGraph: FC<IMarketRatesGraphProps> = ({ data }) => {
-
+  // Setting selected position average by default
   const [selectedPositions, setSelectedPositions] = useState<string[]>(["average"]);
   const [graphData, setGraphData] = useState<IGraphData>({});
   const [multiLineData, setMultiLineData] = useState<ILineData[]>([]);
 
   useEffect(() => {
+    //Prepare data and separate informtion based on the market position
     const marketLow: ILineData = { name: "low", color: "#D50000", values: [] };
     const marketAvg: ILineData = { name: "average", color: "#AA00FF", values: [] }
     const marketHigh: ILineData = { name: "high", color: "#2962FF", values: [] };
 
     data.forEach((item) => {
+      // Parsing date here to use correctly with d3
       const lowObj: IPointData = {
         day: d3.timeParse("%Y-%m-%d")(item.day),
         value: item.low
@@ -48,9 +50,8 @@ const MarketRatesGraph: FC<IMarketRatesGraphProps> = ({ data }) => {
   }, [data]);
 
   useEffect(() => {
-
-
     const tempData: ILineData[] = [];
+    //This is changed everytime market position is selected fro the MarketPosition array
     selectedPositions.forEach((position) => {
       tempData.push(graphData[position])
     });
@@ -58,6 +59,8 @@ const MarketRatesGraph: FC<IMarketRatesGraphProps> = ({ data }) => {
     setMultiLineData(tempData);
   }, [graphData, selectedPositions]);
 
+  //Setting up domain information. Doing this because we have unprocessed response with all grouped data here.
+  //In graph we only send processed response
   const domain = {
     xMinValue: d3.min(data, d => d.day),
     xMaxValue: d3.max(data, d => d.day),

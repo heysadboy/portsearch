@@ -11,15 +11,15 @@ interface ISelectPort {
 }
 
 const SelectPort: FC<ISelectPort> = ({ ports, placeholder, onSelect }) => {
+    //Controlled component to set the input
     const [input, setInput] = useState("");
-    const [isInputSelected, setIsInputSelected] = useState(false);
 
-    const setSearchInput = (e: any) => {
+    const setSearchInput = (e: any) => {        
         setInput(e.target.innerText);
-        setIsInputSelected(true);
         onSelect(e.target.dataset.value);
     }
 
+    //Render search options as the user types in the list
     const searchListOptions = ports
         .filter((port) => {
             const regex = new RegExp(input.replace(/[^a-zA-Z\d:]/g, ""), "gi")

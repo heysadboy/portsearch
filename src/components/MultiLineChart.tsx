@@ -1,6 +1,7 @@
-import { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import * as d3 from "d3";
-import { ILineData } from "../types";
+import { EStatusType, ILineData } from "../types";
+import Status from "./Status";
 
 interface IMultiLineChartProp {
     data: ILineData[],
@@ -8,18 +9,18 @@ interface IMultiLineChartProp {
 }
 
 const MultiLineChart: FC<IMultiLineChartProp> = ({ data, domain }) => {
-    
+    const [isNoData, setIsNoData] = useState(false);
+
     useEffect(() => {
         d3.select("#chart").selectAll("*").remove();
+        let noDataFlag = 0;
 
         if (data.length > 0 && data[0]) {
-            console.log(data);
-
-            var margin = { top: 2, right: 30, bottom: 30, left: 60 },
+            let margin = { top: 2, right: 30, bottom: 30, left: 60 },
                 width = 800 - margin.left - margin.right,
                 height = 400 - margin.top - margin.bottom;
 
-            var svg = d3.select("#chart").append("svg")
+            let svg = d3.select("#chart").append("svg")
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
                 .append("g")
@@ -27,20 +28,25 @@ const MultiLineChart: FC<IMultiLineChartProp> = ({ data, domain }) => {
                     "translate(" + margin.left + "," + margin.top + ")");
 
             // Adding X axis
-            var x = d3.scaleTime()
-                .domain(d3.extent(data[0].values, function (d: any) { return d.day; }) as Iterable<Date>)
+            let x = d3.scaleTime()
+                .domain(d3.extent(data[0].values, (d: any) => { return d.day; }) as Iterable<Date>)
                 .range([0, width]);
-            svg.append("g")
+            let xAxisGroup = svg.append("g")
                 .attr("transform", "translate(0," + height + ")")
                 .call(d3.axisBottom(x).ticks(5));
 
+            xAxisGroup.select(".domain").remove();
+            xAxisGroup.selectAll("line").remove();
 
             // Adding Y axis
-            var y = d3.scaleLinear()
+            let y = d3.scaleLinear()
                 .domain([0, domain.yMaxValue + 1000] as Iterable<number>)
                 .range([height, 0]);
-            svg.append("g")
-                .call(d3.axisLeft(y));
+            let yAxisGroup = svg.append("g")
+                .call(d3.axisLeft(y).tickSizeInner(-width));
+
+            yAxisGroup.select(".domain").remove();
+            yAxisGroup.selectAll("line").attr("stroke", "rgba(0, 0, 0, 0.2)");
 
             // Adding lines
             svg.selectAll(".line")
@@ -48,19 +54,31 @@ const MultiLineChart: FC<IMultiLineChartProp> = ({ data, domain }) => {
                 .enter()
                 .append("path")
                 .attr("fill", "none")
-                .attr("stroke", function (d) { return d.color })
+                .attr("stroke", (d) => { return d.color })
                 .attr("stroke-width", 1.5)
-                .attr("d", function (d: any) {
+                .attr("d", (d: any) => {
                     return d3.line()
-                        .x(function (d: any) { return x(d.day); })
-                        .y(function (d: any) { return y(+d.value); })
+                        .x((d: any) => { return x(d.day); })
+                        .y((d: any) => {
+                            noDataFlag += y(+d.value); //Check if there are no values at all
+                            return y(+d.value);
+                        })
+                        .defined((d: any) => { return d.value; }) // Omit empty values.
                         (d.values)
-                })
+                });
 
+            if (noDataFlag === 0) {
+                setIsNoData(true);
+            }
         }
     }, [data, domain.yMaxValue])
 
-    return (<div id="chart"></div>)
+    //If all values are null then line can not be generated so show appropriate message.
+    return (
+        <React.Fragment>
+            {isNoData ? <Status status={EStatusType.no_data} /> : <div id="chart"></div>}
+        </React.Fragment>
+    );
 };
 
 export default MultiLineChart;

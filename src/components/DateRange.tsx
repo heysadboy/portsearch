@@ -5,6 +5,7 @@ interface IDateRange {
     endDate: string | undefined
 }
 
+// Information regarding date range for the data
 const DateRange: FC<IDateRange> = ({ startDate, endDate }) => {
     return (
         <div className="ui basic label date-container">

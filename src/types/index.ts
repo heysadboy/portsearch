@@ -38,7 +38,8 @@ export enum EStatusType {
     error = "ERROR",
     initial = "INITIAL",
     loading = "LOADING",
-    no_position_selected = "NO_POSITION_SELECTED"
+    no_position_selected = "NO_POSITION_SELECTED",
+    no_data = "NO_DATA"
 }
 
 export interface IAction {

@@ -5,8 +5,10 @@ interface IMarketPositionProp {
     selectedPositions: string[]
 }
 
+// Market Position selector
 const MarketPosition: FC<IMarketPositionProp> = ({ setSelectedPositions, selectedPositions }) => {
 
+    //Select the data and set the state selectedPositions to define the values to be added in multiLineData
     const setMarketPosition = (e: any) => {
         let positions = [...selectedPositions];
         switch (e.target.name) {

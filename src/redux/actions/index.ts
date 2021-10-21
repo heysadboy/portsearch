@@ -6,6 +6,7 @@ import { AppState, IAction, EActionType, IPort, IMarketRate, EStatusType, } from
 export const getPortsData = () => async (dispatch: ThunkDispatch<AppState, {}, IAction>) => {
     const response = await api.get("/ports");
     const portsData: IPort[] = response.data as IPort[];
+    portsData.sort((a,b) => a.name.localeCompare(b.name));
     const portAction: IAction = { type: EActionType.get_ports, payload: portsData };
     dispatch(portAction);
 };

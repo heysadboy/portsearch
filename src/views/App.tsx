@@ -53,7 +53,7 @@ const App: FC<IAppProps> = ({ getPortsData, getMarketRatesData, ports, marketRat
                 <SelectPort placeholder="Destination Port" ports={ports} onSelect={setDestination} />
             </div>
             <div className="data-info-container">
-             { status === EStatusType.ok ? <MarketRatesGraph data={marketRates} />: <Status status={status}/> }
+                {status === EStatusType.ok ? <MarketRatesGraph data={marketRates} /> : <Status status={status} />}
             </div>
         </div>
     );

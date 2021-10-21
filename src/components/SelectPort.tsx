@@ -15,6 +15,7 @@ const SelectPort: FC<ISelectPort> = ({ ports, placeholder, onSelect }) => {
     const [input, setInput] = useState("");
 
     const setSearchInput = (e: any) => {
+        e.stopPropagation();
         setInput(e.target.innerText);
         onSelect(e.target.dataset.value);
     }
@@ -41,7 +42,7 @@ const SelectPort: FC<ISelectPort> = ({ ports, placeholder, onSelect }) => {
             </div>
             {
                 input &&
-                <div className="ui relaxed selection list search-list">
+                <div className="ui relaxed selection list search-list" >
                     {searchListOptions}
                 </div>
             }

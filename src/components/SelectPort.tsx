@@ -15,7 +15,6 @@ const SelectPort: FC<ISelectPort> = ({ ports, placeholder, onSelect }) => {
     const [input, setInput] = useState("");
 
     const setSearchInput = (e: any) => {
-        e.stopPropagation();
         setInput(e.target.innerText);
         onSelect(e.target.dataset.value);
     }
